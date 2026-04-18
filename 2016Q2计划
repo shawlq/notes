@@ -1,0 +1,17 @@
+- [x] 安装webui，ollama部署模型，https://build.nvidia.com/spark/open-webui
+- [x] 安装tailscale，打通远程操作，windows外网可访问spark https://build.nvidia.com/spark/tailscale
+- [x] model部署，webui上尝试122b大模型
+- [x] model部署，webui上试下70b和30+b模型，选个做日常用   --- qwen3.6 昨天刚出来
+- [ ] 性能提升，vllm部署模型，前端还是webui，https://build.nvidia.com/spark/vllm，或者 https://build.nvidia.com/spark/sglang
+- [ ] 安装基础件 conda
+- [ ] 玩comfy，尝试图生文，https://build.nvidia.com/spark/comfy-ui
+- [ ] 知识图谱，https://build.nvidia.com/spark/txt2kg
+- [ ] 安装agent nemoclaw ---是否需要？openclaw还是用hermes  https://build.nvidia.com/spark/nemoclaw
+- [ ] 安装agent，openclaw，https://build.nvidia.com/spark/openclaw
+- [ ] 安装agent，多agent，https://build.nvidia.com/spark/multi-agent-chatbot
+- [ ] 微调，尝试微调模型 https://build.nvidia.com/spark/nemo-fine-tune  https://build.nvidia.com/spark/pytorch-fine-tune
+- [ ] 量化，尝试nvpf4量化，教程，https://build.nvidia.com/station/nvfp4-quantization
+- [ ] 车端模型， https://build.nvidia.com/nvidia/sparsedrive
+- [ ] 视频摘要 VSS，不知道是什么, https://build.nvidia.com/spark/vss
+- [ ] 实时vlm， https://build.nvidia.com/spark/live-vlm-webui
+- [ ] 全模态模型部署， 有个全双工的 MiniCPM-o 4.5，   nvidia可以参考 https://build.nvidia.com/spark/spark-reachy-photo-booth
