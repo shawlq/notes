@@ -43,7 +43,20 @@ python3 -m sglang.launch_server \
 
 一行命令，用modelscope
 ```
-docker run  -d --gpus all --rm --network host --ipc=host -v /data/models/modelscope:/root/.cache/modelscope/hub/models -e SGLANG_USE_MODELSCOPE=true  --name sglang-server lmsysorg/sglang:nightly-dev-cu13-20260416-a4cf2ea1 python3 -m sglang.launch_server  --model-path Qwen3-6-35B-A3 --host 0.0.0.0 --port 30000 --trust-remote-code --tp 1 --mem-fraction-static 0.75 --context-length 131072
+docker run  -d \
+--gpus all \
+--rm \
+--network host \
+--ipc=host -v /data/models/modelscope:/root/.cache/modelscope/hub/models -e SGLANG_USE_MODELSCOPE=true  \
+--name sglang-server lmsysorg/sglang:nightly-dev-cu13-20260416-a4cf2ea1 python3 -m sglang.launch_server  \
+--model-path Qwen3-6-35B-A3 \
+--host 0.0.0.0 \
+--port 30000 \
+--trust-remote-code \
+--tp 1 \
+--mem-fraction-static 0.75 \
+--context-length 131072 \
+--sleep-on-idle
 ```
 其他：
 
@@ -53,6 +66,8 @@ docker run  -d --gpus all --rm --network host --ipc=host -v /data/models/modelsc
 | `--reasoning-parser none` | 关闭自动 Think / 预计算             |
 | `--tool-call-parser none` | 关闭自动 工具调用             |
 | `--lazy-load`     | 按需加载模型，模型不立即占用 GPU，只有收到请求才加载 |
+| `--sleep-on-idle`     | 避免cpu长时间100%，大约1分30s自动降 |
+
 
 
 
