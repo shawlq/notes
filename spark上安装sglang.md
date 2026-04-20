@@ -115,7 +115,20 @@ docker run -d --network host -v open-webui:/app/backend/data -e OPENAI_API_BASE_
 - Model: `Qwen/Qwen3.6-35B-A3B`
 
 ### 参数关闭thinking
-在webui中，选择模型，在其高级参数中，添加新参数，输入chat_template_kwargs，值是{"enable_thinking": false}，点击保存。 这时候模型就不会有thinking过程。但是F12抓包，也没看到webui发送这个参数，不知道是如何生效的
+在webui中，选择模型，在其高级参数中，添加新参数，输入chat_template_kwargs，值是{"enable_thinking": false}，点击保存。
+webui会发送指令保存到后端模型数据库，在对模型请求时把用户命令附上，发送给sglang的模型
+抓包结果：
+```
+(base) atom@spark-c3b6:~$ sudo ngrep -d tailscale0 -W byline 'wxq|enable_thinking|custom_params' tcp port 12000
+interface: tailscale0 (100.97.133.46/255.255.255.255)
+filter: ( tcp port 12000 ) and (ip || ip6)
+match (JIT): wxq|enable_thinking|custom_params
+############################
+T 100.116.107.102:59494 -> 100.97.133.46:12000 [AP] #28
+citations":true,"status_updates":true,"builtin_tools":true},"suggestion_prompts":[{"content":"","title":["",""]}],"tags":[],"builtinTools":{"time":true,"memory":true,"chats":true,"notes":true,"knowledge":true,"channels":true,"web_search":true,"image_generation":true,"code_interpreter":true},"defaultFeatureIds":["image_generation"],"hidden":false},"params":{"think":false,"custom_params":{"chat_template_kwargs":"{\"enable_thinking\": false}","wxq":"test"}},"object":"model","created":1776672360,"owned_by":"openai","root":"Qwen3-6-35B-A3","parent":null,"max_model_len":131072,"connection_type":"external","openai":{"id":"Qwen3-6-35B-A3","object":"model","created":1776672360,"owned_by":"sglang","root":"Qwen3-6-35B-A3","parent":null,"max_model_len":131072,"connection_type":"external"},"urlIdx":0,"user_id":"2d11a8bc-0af6-493d-b5e5-0ed768cbcac4","access_grants":[],"is_active":true,"updated_at":1776615054,"created_at":1776614744}
+###############################################
+```
+
 
 ## 故障处理
 ### sglang容器下载模型异常
