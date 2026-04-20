@@ -70,11 +70,20 @@ docker run  -d \
 
 
 ### 模型测试
-后端测试，执行
+后端测试，默认开启thinking，执行
 ```
 curl http://127.0.0.1:30000/v1/chat/completions     -H "Content-Type: application/json"     -d '{
         "model": "Qwen3.6-35B-A3B",
         "messages": [{"role": "user", "content": "Hello"}]
+    }'
+```
+
+后端测试，关闭thinking，执行
+```
+curl http://127.0.0.1:30000/v1/chat/completions     -H "Content-Type: application/json"     -d '{
+        "model": "Qwen3.6-35B-A3B",
+        "messages": [{"role": "user", "content": "Hello"}],
+        "chat_template_kwargs": {"enable_thinking": false}
     }'
 ```
 
