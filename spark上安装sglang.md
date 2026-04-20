@@ -88,6 +88,7 @@ curl http://127.0.0.1:30000/v1/chat/completions     -H "Content-Type: applicatio
 ```
 
 
+
 ## 安装webui
 之前docker pull的open-webui:ollama 自带ollama。
 后面就统一改成
@@ -112,7 +113,8 @@ docker run -d --network host -v open-webui:/app/backend/data -e OPENAI_API_BASE_
 - API Key: `随便填（SGLang不校验）`
 - Model: `Qwen/Qwen3.6-35B-A3B`
 
-
+### 参数关闭thinking
+在webui中，选择模型，在其高级参数中，添加新参数，输入chat_template_kwargs，值是{"enable_thinking": false}，点击保存。 这时候模型就不会有thinking过程。但是F12抓包，也没看到webui发送这个参数，不知道是如何生效的
 
 ## 故障处理
 ### sglang容器下载模型异常
