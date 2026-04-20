@@ -69,7 +69,14 @@ docker run  -d \
 | `--sleep-on-idle`     | 避免cpu长时间100%，大约1分30s自动降 |
 
 
-
+### 模型测试
+后端测试，执行
+```
+curl http://127.0.0.1:30000/v1/chat/completions     -H "Content-Type: application/json"     -d '{
+        "model": "Qwen3.6-35B-A3B",
+        "messages": [{"role": "user", "content": "Hello"}]
+    }'
+```
 
 
 ## 安装webui
@@ -95,6 +102,8 @@ docker run -d --network host -v open-webui:/app/backend/data -e OPENAI_API_BASE_
 - Base URL: `http://你的IP:30000/v1`
 - API Key: `随便填（SGLang不校验）`
 - Model: `Qwen/Qwen3.6-35B-A3B`
+
+
 
 ## 故障处理
 ### sglang容器下载模型异常
