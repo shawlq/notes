@@ -48,7 +48,8 @@ docker run  -d \
 --rm \
 --network host \
 --ipc=host -v /data/models/modelscope:/root/.cache/modelscope/hub/models -e SGLANG_USE_MODELSCOPE=true  \
---name sglang-server lmsysorg/sglang:nightly-dev-cu13-20260416-a4cf2ea1 python3 -m sglang.launch_server  \
+--name sglang-server lmsysorg/sglang:nightly-dev-cu13-20260416-a4cf2ea1 \
+python3 -m sglang.launch_server  \
 --model-path Qwen3-6-35B-A3 \
 --host 0.0.0.0 \
 --port 30000 \
