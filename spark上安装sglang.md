@@ -95,15 +95,12 @@ curl http://127.0.0.1:30000/v1/chat/completions     -H "Content-Type: applicatio
 后面就统一改成
 ```
 docker run -d \
-  -p 8080:8080 \
+  -p 13000:8080 \
   -v open-webui:/app/backend/data \
   -e OPENAI_API_BASE_URL=http://host.docker.internal:30000/v1 \
   -e OPENAI_API_KEY=sk-anything \
   --name open-webui \
   ghcr.io/open-webui/open-webui:main
-
-
-docker run -d --network host -v open-webui:/app/backend/data -e OPENAI_API_BASE_URL=http://127.0.0.1:30000/v1 -e OPENAI_API_KEY=sk-anything --name open-webui-main ghcr.io/open-webui/open-webui:main
 ```
 注意： host.docker.internal 是容器和主机的默认路径，不要动
 
