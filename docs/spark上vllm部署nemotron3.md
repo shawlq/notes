@@ -63,7 +63,8 @@ docker run -d --gpus all \
     --max-model-len 1000000 \
     --moe-backend marlin \
     --mamba_ssm_cache_dtype float32 \
-    --quantization fp4
+    --quantization fp4 \
+    --enable-flashinfer
 fi
 ```
 
