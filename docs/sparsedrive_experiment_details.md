@@ -1,3 +1,16 @@
+## 目录
+
+- [数据准备](#数据准备)
+  - [数据下载， 实际只需要   "nuScenes-map-expansion-v1.3.zip"](#数据下载-实际只需要-nuscenes-map-expansion-v13zip)
+  - [数据解压](#数据解压)
+    - [mini](#mini)
+- [按步骤执行训练脚本](#按步骤执行训练脚本)
+  - [参考](#参考)
+  - [注意事项](#注意事项)
+    - [mini训练&验证](#mini训练验证)
+- [其它](#其它)
+  - [解压全量数据， 避免终端误关闭，最好后台运行](#解压全量数据-避免终端误关闭最好后台运行)
+
 # 数据准备
 
 ## 数据下载， 实际只需要   "nuScenes-map-expansion-v1.3.zip"
@@ -125,6 +138,12 @@ url: https://github.com/swc-17/SparseDrive/blob/main/docs/quick_start.md
 echo $LD_LIBRARY_PATH
 # 或者强制：
 export LD_LIBRARY_PATH=$CONDA_PREFIX/lib:$LD_LIBRARY_PATH
+```
+
+4. train.sh 的 stage2可能会报错，因为stage1生成完成未把last.pth 保存未stage2需要的预训练模型。，修改 `scripts/train.sh`， 增加：
+```bash
+  mkdir -p ckpt
+  cp -L work_dirs/sparsedrive_small_stage1/latest.pth "$STAGE1_CKPT"
 ```
 
 2和3的解决参考, **修改后本地能启动训练**：
