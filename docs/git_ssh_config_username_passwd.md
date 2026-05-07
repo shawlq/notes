@@ -49,7 +49,7 @@ fatal: unable to access 'https://github.com/shawlq/notes.git/': The requested UR
 
 ---
 
-💡 **建议**
+**建议**
 
 * 如果你只有这个账户，**PAT 也可以**，但每次 push 可能要输入（可以缓存）。
 * 如果你会在同一台电脑用多个 GitHub 账户，**SSH + ~/.ssh/config** 最安全。
