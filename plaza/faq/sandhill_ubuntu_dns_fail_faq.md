@@ -29,6 +29,26 @@ sudo systemctl restart NetworkManager         # 如果你使用 NetworkManager
 sudo systemctl restart tailscaled
 ```
 
+### 附带问题：
+
+解决DNS后，可能导致git无法访问（git push 失败），原因是DNS被内网劫持，把github.com解析成192.x.x.x，解决：
+
+1. 通过nslookup查询ip
+
+```bash
+nslookup github.com 8.8.8.8
+Server:         8.8.8.8
+Address:        8.8.8.8#53
+
+Non-authoritative answer:
+Name:   github.com
+Address: 20.205.243.166
+```
+
+2. 在/etc/hosts 最后添加 `20.205.243.166 github.com`
+
+
+
 ## 1. 问题现象
 
 - 浏览器或终端中访问域名（如 `baidu.com`）无法打开；
