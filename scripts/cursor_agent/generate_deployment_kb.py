@@ -1,11 +1,13 @@
+# cursor agent generate deployment kb(knowledge book)
+
 from __future__ import annotations
 
 from collections import Counter
 from pathlib import Path
 
 
-BASE = Path("/workspace/deployment")
-BASE.mkdir(exist_ok=True)
+BASE = Path(__file__).resolve().parent / "deployment"
+BASE.mkdir(parents=True, exist_ok=True)
 
 
 COMMON_LINKS = [
@@ -1073,7 +1075,7 @@ def build_readme(unique_links: int) -> None:
 def validate(unique_links: int) -> None:
     markdown_files = sorted(BASE.glob("*.md"))
     all_text = "\n".join(path.read_text() for path in markdown_files)
-    if all_text.count("### 🔗 真实来源链接（20 条精选）") != len(SECTIONS) + 1:
+    if all_text.count("### 🔗 真实来源链接（20 条精选）") != len(SECTIONS):
         raise ValueError("精选链接标题数量不正确")
     if unique_links < 200:
         raise ValueError("去重链接数不足 200")
