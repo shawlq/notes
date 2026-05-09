@@ -1,0 +1,64 @@
+{
+  "runtime": {
+    "device_id": 0,
+    "enable_cuda_graph": true,
+    "warmup_runs": 2,
+    "memory_pool_bytes": 268435456,
+    "max_concurrent_models": 2
+  },
+  "models": [
+    {
+      "name": "bev",
+      "type": "BEV",
+      "engine_path": "models/bev.plan",
+      "input_tensor": "camera_images",
+      "output_tensor": "bev_features",
+      "priority": 0,
+      "stream_id": 0,
+      "estimated_workspace_bytes": 67108864,
+      "input_shape": [1, 6, 3, 256, 704],
+      "output_shape": [1, 128, 128, 128]
+    },
+    {
+      "name": "god",
+      "type": "GOD",
+      "engine_path": "models/god.plan",
+      "input_tensor": "bev_features",
+      "output_tensor": "objects",
+      "priority": 1,
+      "stream_id": 1,
+      "estimated_workspace_bytes": 33554432,
+      "input_shape": [1, 128, 128, 128],
+      "output_shape": [1, 256, 10]
+    },
+    {
+      "name": "lane_mark",
+      "type": "LaneMark",
+      "engine_path": "models/lane.plan",
+      "input_tensor": "bev_features",
+      "output_tensor": "lanes",
+      "priority": 1,
+      "stream_id": 1,
+      "estimated_workspace_bytes": 16777216,
+      "input_shape": [1, 128, 128, 128],
+      "output_shape": [1, 128, 6]
+    },
+    {
+      "name": "e2e_trajectory",
+      "type": "E2E",
+      "engine_path": "models/e2e.plan",
+      "input_tensor": "objects",
+      "output_tensor": "trajectory",
+      "priority": 2,
+      "stream_id": 0,
+      "estimated_workspace_bytes": 16777216,
+      "input_shape": [1, 256, 10],
+      "output_shape": [1, 80, 3]
+    }
+  ],
+  "edges": [
+    { "from": "bev", "to": "god" },
+    { "from": "bev", "to": "lane_mark" },
+    { "from": "god", "to": "e2e_trajectory" }
+  ]
+}
