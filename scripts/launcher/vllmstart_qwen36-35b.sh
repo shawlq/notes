@@ -33,7 +33,7 @@ docker run -d --gpus all \
     --pipeline-parallel-size 1 \
     --data-parallel-size 1 \
     --trust-remote-code \
-    --gpu-memory-utilization 0.70 \
+    --gpu-memory-utilization 0.60 \
     --enable-chunked-prefill \
     --max-num-seqs 8 \
     --max-model-len 1000000 \
@@ -44,3 +44,13 @@ docker run -d --gpus all \
     --tool-call-parser hermes
 
 fi
+#echo "  curl -sS http://localhost:8000/v1/chat/completions \
+#    -H "Content-Type: application/json" \
+#    -d '{
+#      "model": "qwen36-35b-vllm",
+#      "messages": [{"role": "user", "content": "为什么还有thinking"}],
+#      "max_tokens": 2046,
+#      "temperature": 0.6,
+#      "chat_template_kwargs": {"enable_thinking": false}
+#    }'"
+
