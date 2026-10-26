@@ -12,6 +12,7 @@
 - `research_worklog.md`：按一级章节记录的检索计划、50 条中间汇总和 100+ 条完成汇总。
 - `progress_reports.md`：每完成 3 个二级章节的进度快照。
 - `appendices.md`：附录 A/B/C。
+- `multi-model-orchestration.md`：专题。多模型（backbone、OD、LD、DLP、红绿灯、脱敏、天气）的编排、共享特征 / prefill 契约、量化分层与模型转换。
 
 ## 当前状态
 - 已完成二级章节：**54 / 54**
@@ -23,3 +24,4 @@
 2. 再按一级主题进入四个 part 文件。
 3. 若需要查证资料覆盖和写作过程，查看 `research_worklog.md` 与 `progress_reports.md`。
 4. 附录中的来源统计与术语表适合作为评审会材料的附页。
+5. 多模型如何拼成一条推理链路，读 `multi-model-orchestration.md`。
