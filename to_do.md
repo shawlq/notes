@@ -19,3 +19,5 @@ nsys：https://developer.nvidia.com/nsight-compute?utm_source=chatgpt.com
 
 
 https://www.lmsys.org/blog
+
+家里搞个瑞士军刀面板框架，里面封装类似ftpserver这种工具
